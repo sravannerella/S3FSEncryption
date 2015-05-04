@@ -29,14 +29,18 @@ using CryptoPP::Exception;
 #include "hex.h"
 using CryptoPP::HexEncoder;
 using CryptoPP::HexDecoder;
+
 #include "filters.h"
 using CryptoPP::StringSink;
 using CryptoPP::StringSource;
 using CryptoPP::StreamTransformationFilter;
+
 #include "aes.h"
 using CryptoPP::AES;
+
 #include "ccm.h"
 using CryptoPP::CBC_Mode;
+
 #include "files.h"
 using CryptoPP::FileSink;
 using CryptoPP::FileSource;
@@ -1249,6 +1253,8 @@ bool FdManager::Close(FdEntity* ent)
   }
   return false;
 }
+
+//Changes 2, Encrypt and decrypt functions defined
 
 int Cryption::encrypt(int fd){
   AutoSeededRandomPool prng;

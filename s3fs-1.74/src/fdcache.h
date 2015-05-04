@@ -156,12 +156,13 @@ class FdManager
     bool Close(FdEntity* ent);
 };
 
+//Change 1
 class Cryption{
 	public:
+        static string getKey();
     	static int encrypt(int fd);
         static int decrypt(int fd);
     	static string read(int fd);
-    	static string getKey();
 };
 
 #endif // FD_CACHE_H_
