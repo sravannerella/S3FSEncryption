@@ -991,14 +991,6 @@ ssize_t FdEntity::Read(char* bytes, off_t start, size_t size, bool force_load)
   {
     AutoLock auto_lock(&fdent_lock);
 
-  //MYCODE
-  // string contentsIv = "This is written by Read";
-  // const char *bufContents = contentsIv.c_str();
-  // lseek(fd, 0, SEEK_SET);
-  // write(fd, bufContents, contentsIv.length());
-  //MYCODE END
-
-
     if(-1 == (rsize = pread(fd, bytes, size, start))){
       DPRN("pread failed. errno(%d)", errno);
       return -errno;
@@ -1012,15 +1004,11 @@ ssize_t FdEntity::Write(const char* bytes, off_t start, size_t size)
   int     result;
   ssize_t wsize;
 
-
-
   FPRNINFO("[path=%s][fd=%d][offset=%jd][size=%zu]", path.c_str(), fd, (intmax_t)start, size);
 
   if(-1 == fd){
     return -EBADF;
   }
-
-  
 
   // Load unitialized area which starts from 0 to (start + size) before writing.
   if(0 != (result = Load(0, start))){
